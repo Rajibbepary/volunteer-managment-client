@@ -1,9 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/images/login.jpg'
+import lottieLogin from '../../assets/lottie/Animation - 1734804789886.json'
 import logo from '../../assets/images/logo.png'
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
+import Lottie from 'lottie-react'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -46,11 +47,9 @@ const Login = () => {
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
         <div
-          className='hidden bg-cover bg-center lg:block lg:w-1/2'
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
+          className='hidden bg-cover bg-center lg:block p-3 lg:w-1/2'>
+            <Lottie animationData={lottieLogin}></Lottie>
+        </div>
 
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>

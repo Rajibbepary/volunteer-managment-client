@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/images/register.jpg'
+import registerLottie from '../../assets/lottie/Animation - 1734804666104.json'
 import logo from '../../assets/images/logo.png'
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
+import Lottie from 'lottie-react'
 
 const Registration = () => {
   const navigate = useNavigate()
@@ -185,11 +186,7 @@ const Registration = () => {
           </div>
         </div>
         <div
-          className='hidden bg-cover bg-center lg:block lg:w-1/2'
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
+          className='hidden bg-cover mt-20 bg-center lg:block lg:w-1/2'><Lottie animationData={registerLottie}></Lottie></div>
       </div>
     </div>
   )
