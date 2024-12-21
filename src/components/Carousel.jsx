@@ -10,9 +10,9 @@ import 'swiper/css/navigation'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import Slide from './Slide'
 
-import bgimg1 from '../assets/images/carousel1.jpg'
-import bgimg2 from '../assets/images/carousel2.jpg'
-import bgimg3 from '../assets/images/carousel3.jpg'
+import bgimg1 from '../assets/images/istockphoto-1498170916-1024x1024.jpg'
+import bgimg2 from '../assets/images/istockphoto-1498170898-1024x1024.jpg'
+import bgimg3 from '../assets/images/volunteer-service-6772198_1280.jpg'
 
 export default function Carousel() {
   return (
@@ -34,20 +34,20 @@ export default function Carousel() {
       >
         <SwiperSlide>
           <Slide
-            image={bgimg1}
-            text='Get Your Web Development Projects Done in minutes'
+            image={bgimg1} 
+            text='Join Hands to Make a Difference: Volunteer Today!'
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg2}
-            text='Get Your Graphics Design Projects Done in minutes'
+            text='Empower Communities Through Your Skills: Volunteer With Us!'
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg3}
-            text='Start Your Digital Marketing Campaigns up n running'
+            text='Be the Change: Volunteer and Impact Lives!'
           />
         </SwiperSlide>
       </Swiper>
