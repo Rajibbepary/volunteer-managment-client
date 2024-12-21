@@ -1,16 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
 import registerLottie from '../../assets/lottie/Animation - 1734804666104.json'
 import logo from '../../assets/images/logo.png'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import Lottie from 'lottie-react'
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 const Registration = () => {
   const navigate = useNavigate()
   const { signInWithGoogle, createUser, updateUserProfile, setUser } =
     useContext(AuthContext)
-
+    const [showPassword, setShowPassword] = useState(false)
   const handleSignUp = async e => {
     e.preventDefault()
     const form = e.target
@@ -19,6 +19,22 @@ const Registration = () => {
     const photo = form.photo.value
     const pass = form.password.value
     console.log({ email, pass, name, photo })
+    if(pass.length < 6){
+      // setError("password must be 6 charaacters")
+      toast.error("Password must be 6 characters");
+       return;
+     }
+
+     if(!/[a-z]/.test(pass)){
+      toast.error("Password must contain at least one lowercase letter.");
+       return;
+     }
+    
+
+     if(!/[A-Z]/.test(pass)){
+       toast.error("Password must contain at least one Uppercase letter.");
+       return;
+     }
     try {
       //2. User Registration
       const result = await createUser(email, pass)
@@ -51,7 +67,7 @@ const Registration = () => {
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+            <img className='w-auto h-12 sm:h-12' src={logo} alt='' />
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>
@@ -142,9 +158,10 @@ const Registration = () => {
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                 type='email'
               />
+              
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 relative'>
               <div className='flex justify-between'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -159,8 +176,14 @@ const Registration = () => {
                 autoComplete='current-password'
                 name='password'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                type='password'
+                type={showPassword ? 'text' : 'password'}
               />
+          <p onClick={()=> setShowPassword(!showPassword)}  className=' bg-white   absolute right-5 top-11'>
+                
+                {
+                  showPassword ? <FaEyeSlash/> :<FaEye />
+                }
+                </p>
             </div>
             <div className='mt-6'>
               <button

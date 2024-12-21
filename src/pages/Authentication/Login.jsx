@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import lottieLogin from '../../assets/lottie/Animation - 1734804789886.json'
 import logo from '../../assets/images/logo.png'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import Lottie from 'lottie-react'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [showPassword, setShowPassword] = useState(false)
   const from = location?.state || '/'
   console.log(from)
   const { signIn, signInWithGoogle } = useContext(AuthContext)
@@ -53,7 +55,7 @@ const Login = () => {
 
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+            <img className='w-auto h-12 sm:h-12' src={logo} alt='' />
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>
@@ -116,7 +118,7 @@ const Login = () => {
               />
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 relative'>
               <div className='flex justify-between'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -131,8 +133,14 @@ const Login = () => {
                 autoComplete='current-password'
                 name='password'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                type='password'
+                type={showPassword ? 'text' : 'password'}
               />
+              <p onClick={()=> setShowPassword(!showPassword)}  className=' bg-white   absolute right-5 top-11'>
+                
+                {
+                  showPassword ? <FaEyeSlash/> :<FaEye />
+                }
+                </p>
             </div>
             <div className='mt-6'>
               <button
