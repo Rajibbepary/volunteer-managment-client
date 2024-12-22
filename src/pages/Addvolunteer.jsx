@@ -2,26 +2,29 @@ import { useContext, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { AuthContext } from '../providers/AuthProvider'
-import axios from 'axios'
-import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
-const AddJob = () => {
-  const navigate = useNavigate()
+import axios from 'axios';
+
+const Addvolunteer = () => {
+    //const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   const [startDate, setStartDate] = useState(new Date())
   const handleSubmit = async e => {
     e.preventDefault()
     const form = e.target
-    const title = form.job_title.value
+    const thumbnail = form.thumbnail.value
+    const title = form.title.value
+    const name = form.name.value
     const email = form.email.value
     const deadline = startDate
     const category = form.category.value
-    const min_price = parseFloat(form.min_price.value)
-    const max_price = parseFloat(form.max_price.value)
+    const location = form.location.value
+    const volunteersNeeded = parseFloat(form.volunteersNeeded.value)
     const description = form.description.value
 
     const formData = {
       title,
+      thumbnail,
+      name,
       buyer: {
         email,
         name: user?.displayName,
@@ -29,46 +32,62 @@ const AddJob = () => {
       },
       deadline,
       category,
-      min_price,
-      max_price,
+      location,
+      volunteersNeeded,
       description,
-      bid_count: 0,
+
     }
-    try {
-      // 1. make a post request
-      await axios.post(`${import.meta.env.VITE_API_URL}/add-job`, formData)
-      // 2. Reset form
-      form.reset()
-      // 3. Show toast and navigate
-      toast.success('Data Added Successfully!!!')
-      navigate('/my-posted-jobs')
-    } catch (err) {
-      console.log(err)
-      toast.error(err.message)
-    }
+
+   
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/add-volunteer`,formData )
+    
+    console.log(data)
+
   }
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
       <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>
         <h2 className='text-lg font-semibold text-gray-700 capitalize '>
-          Post a Job
+          Post a Volunteer
         </h2>
 
         <form onSubmit={handleSubmit}>
           <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2'>
-            <div>
+          <div>
               <label className='text-gray-700 ' htmlFor='job_title'>
-                Job Title
+              Thumbnail
               </label>
               <input
                 id='job_title'
-                name='job_title'
+                name='thumbnail'
+                type='url'
+                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+              />
+            </div>
+            <div>
+              <label className='text-gray-700 ' htmlFor='job_title'>
+                Post Title
+              </label>
+              <input
+                id='job_title'
+                name='title'
                 type='text'
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
 
+            <div>
+              <label className='text-gray-700 ' htmlFor='emailAddress'>
+                Name
+              </label>
+              <input
+                id='emailAddress'
+                type='text'
+                name='name'
+                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+              />
+            </div>
             <div>
               <label className='text-gray-700 ' htmlFor='emailAddress'>
                 Email Address
@@ -82,16 +101,7 @@ const AddJob = () => {
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
-            <div className='flex flex-col gap-2 '>
-              <label className='text-gray-700'>Deadline</label>
-
-              {/* Date Picker Input Field */}
-              <DatePicker
-                className='border p-2 rounded-md'
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-              />
-            </div>
+            
 
             <div className='flex flex-col gap-2 '>
               <label className='text-gray-700 ' htmlFor='category'>
@@ -102,32 +112,45 @@ const AddJob = () => {
                 id='category'
                 className='border p-2 rounded-md'
               >
-                <option value='Web Development'>Web Development</option>
-                <option value='Graphics Design'>Graphics Design</option>
-                <option value='Digital Marketing'>Digital Marketing</option>
+                 <option value="">Select category</option>
+                <option value='HealthCare'>HealthCare</option>
+                <option value='Education'>Education</option>
+                <option value='Social Service'>Social Service</option>
+                <option value='Animal Welfare'>Animal Welfare</option>
               </select>
             </div>
             <div>
               <label className='text-gray-700 ' htmlFor='min_price'>
-                Minimum Price
+                Location
               </label>
               <input
                 id='min_price'
-                name='min_price'
-                type='number'
+                name='location'
+                type='text'
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
             </div>
 
             <div>
-              <label className='text-gray-700 ' htmlFor='max_price'>
-                Maximum Price
+              <label className='text-gray-700 ' htmlFor='min_price'>
+              Volunteers Needed
               </label>
               <input
-                id='max_price'
-                name='max_price'
+                id='min_price'
+                name="volunteersNeeded"
                 type='number'
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+              />
+            </div>
+
+            <div className='flex flex-col gap-2 '>
+              <label className='text-gray-700'>Deadline</label>
+
+              {/* Date Picker Input Field */}
+              <DatePicker
+                className='border p-2 rounded-md'
+                selected={startDate}
+                onChange={date => setStartDate(date)}
               />
             </div>
           </div>
@@ -143,13 +166,13 @@ const AddJob = () => {
           </div>
           <div className='flex justify-end mt-6'>
             <button className='disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
-              Save
+              Add Post
             </button>
           </div>
         </form>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default AddJob
+export default Addvolunteer;

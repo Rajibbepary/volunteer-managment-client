@@ -18,7 +18,7 @@ const Navbar = () => {
             <Link to='/'>Home</Link>
           </li>
           <li>
-            <Link to='/jobs'>All Jobs</Link>
+            <Link to='/volunteer'>All Volunteer</Link>
           </li>
 
           {!user && (
@@ -48,8 +48,8 @@ const Navbar = () => {
               className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
             >
               <li>
-                <Link to='/add-job' className='justify-between'>
-                  Add Job
+                <Link to='/add-volunteer' className='justify-between'>
+                  Add Volunteer
                 </Link>
               </li>
               <li>

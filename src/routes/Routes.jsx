@@ -4,14 +4,15 @@ import Home from '../pages/Home'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 import JobDetails from '../pages/JobDetails'
-import AddJob from '../pages/AddJob'
 import ErrorPage from '../pages/ErrorPage'
 import MyPostedJobs from '../pages/MyPostedJobs'
 import UpdateJob from '../pages/UpdateJob'
 import PrivateRoute from './PrivateRoute'
 import MyBids from '../pages/MyBids'
 import BidRequests from '../pages/BidRequests'
-import AllJobs from '../pages/AllJobs'
+
+import Allvolunteer from '../pages/Allvolunteer'
+import Addvolunteer from '../pages/Addvolunteer'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/jobs',
-        element: <AllJobs />,
+        path: '/volunteer',
+        element: <Allvolunteer/>
       },
       {
         path: '/login',
@@ -51,10 +52,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/add-job',
+        path: '/add-volunteer',
         element: (
           <PrivateRoute>
-            <AddJob />
+            <Addvolunteer/>
           </PrivateRoute>
         ),
       },
