@@ -3,8 +3,7 @@
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 const JobCard = ({ volunter }) => {
-  const { title, deadline, category, name, thumbnail, location, 
-    volunteersNeeded, description, _id } =
+  const { title, deadline, category,  thumbnail,  _id } =
     volunter || {}
     console.log(volunter)
   return (

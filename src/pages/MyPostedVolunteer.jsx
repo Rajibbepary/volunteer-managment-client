@@ -6,16 +6,16 @@ import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 const MyPostedVolunteer = () => {
   const { user } = useContext(AuthContext)
-  const [jobs, setJobs] = useState([])
+  const [volunteer, setVolunteer] = useState([])
   useEffect(() => {
-    fetchAllJobs()
+    fetchAllVolunteer()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-  const fetchAllJobs = async () => {
+  const fetchAllVolunteer = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/volunteer/${user?.email}`
     )
-    setJobs(data)
+    setVolunteer(data)
   }
 
   // delete functionality
@@ -26,7 +26,7 @@ const MyPostedVolunteer = () => {
       )
       console.log(data)
       toast.success('Data Deleted Successfully!!!')
-      fetchAllJobs()
+      fetchAllVolunteer()
     } catch (err) {
       console.log(err)
       toast.error(err.message)
@@ -68,7 +68,7 @@ const MyPostedVolunteer = () => {
         <h2 className='text-lg font-medium text-gray-800 '>My Posted Volunteer</h2>
 
         <span className='px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full '>
-          {jobs.length} Job
+          {volunteer.length} Volunteer
         </span>
       </div>
 
@@ -79,6 +79,14 @@ const MyPostedVolunteer = () => {
               <table className='min-w-full divide-y divide-gray-200'>
                 <thead className='bg-gray-50'>
                   <tr>
+                  <th
+                      scope='col'
+                      className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'
+                    >
+                      <div className='flex items-center gap-x-3'>
+                        <span>Thumbnail</span>
+                      </div>
+                    </th>
                     <th
                       scope='col'
                       className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'
@@ -100,7 +108,7 @@ const MyPostedVolunteer = () => {
                       className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
                     >
                       <button className='flex items-center gap-x-2'>
-                        <span>Price Range</span>
+                        <span>Location</span>
                       </button>
                     </th>
 
@@ -124,45 +132,48 @@ const MyPostedVolunteer = () => {
                 </thead>
                 <tbody className='bg-white divide-y divide-gray-200 '>
                   {/* Generate dynamic tr */}
-                  {jobs.map(job => (
-                    <tr key={job._id}>
+                  {volunteer.map(volunter => (
+                    <tr key={volunter._id}>
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {job.title}
+                        <img className='w-10 h-10 object-cover rounded-full' src={volunter.thumbnail} alt=""  />
+                      </td>
+                      <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+                        {volunter.title}
                       </td>
 
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {format(new Date(job.deadline), 'P')}
+                        {format(new Date(volunter.deadline), 'P')}
                       </td>
 
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        ${job.min_price}-${job.max_price}
+                        {volunter.location}
                       </td>
                       <td className='px-4 py-4 text-sm whitespace-nowrap'>
                         <div className='flex items-center gap-x-2'>
                           <p
                             className={`px-3 py-1  ${
-                              job.category === 'Web Development' &&
+                              volunter.category === 'Web Development' &&
                               'text-blue-500 bg-blue-100/60'
                             } ${
-                              job.category === 'Graphics Design' &&
+                              volunter.category === 'Graphics Design' &&
                               'text-green-500 bg-green-100/60'
                             }
                             ${
-                              job.category === 'Digital Marketing' &&
+                              volunter.category === 'Digital Marketing' &&
                               'text-red-500 bg-red-100/60'
                             } text-xs  rounded-full`}
                           >
-                            {job.category}
+                            {volunter.category}
                           </p>
                         </div>
                       </td>
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                        {job.description.substring(0, 18)}...
+                        {volunter.description.substring(0, 18)}...
                       </td>
                       <td className='px-4 py-4 text-sm whitespace-nowrap'>
                         <div className='flex items-center gap-x-6'>
                           <button
-                            onClick={() => modernDelete(job._id)}
+                            onClick={() => modernDelete(volunter._id)}
                             className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none'
                           >
                             <svg
@@ -182,7 +193,7 @@ const MyPostedVolunteer = () => {
                           </button>
 
                           <Link
-                            to={`/update/${job._id}`}
+                            to={`/update/${volunter._id}`}
                             className='text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none'
                           >
                             <svg
