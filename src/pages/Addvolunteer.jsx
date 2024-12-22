@@ -129,7 +129,7 @@ const Addvolunteer = () => {
               </select>
             </div>
             <div>
-              <label className='text-gray-700 ' htmlFor='min_price'>
+              <label className='text-gray-700 ' htmlFor=''>
                 Location
               </label>
               <input
