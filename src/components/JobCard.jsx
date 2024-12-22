@@ -15,7 +15,7 @@ const JobCard = ({ volunter }) => {
       <div className='flex items-center justify-between'>
 
         <div>
-          <img src={thumbnail} alt="" />
+          <img src={thumbnail} className='w-full h-[200px] object-cover' alt="" />
           <div className='flex justify-between mt-4'>
           <span className='text-xs font-light text-gray-800 '>
           Deadline: {format(new Date(deadline), 'P')}

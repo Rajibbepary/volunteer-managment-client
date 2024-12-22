@@ -4,7 +4,7 @@ import { AuthContext } from '../providers/AuthProvider'
 import axios from 'axios'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
-const MyPostedJobs = () => {
+const MyPostedVolunteer = () => {
   const { user } = useContext(AuthContext)
   const [jobs, setJobs] = useState([])
   useEffect(() => {
@@ -65,7 +65,7 @@ const MyPostedJobs = () => {
   return (
     <section className='container px-4 mx-auto pt-12'>
       <div className='flex items-center gap-x-3'>
-        <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs</h2>
+        <h2 className='text-lg font-medium text-gray-800 '>My Posted Volunteer</h2>
 
         <span className='px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full '>
           {jobs.length} Job
@@ -214,4 +214,4 @@ const MyPostedJobs = () => {
   )
 }
 
-export default MyPostedJobs
+export default  MyPostedVolunteer

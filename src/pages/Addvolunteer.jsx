@@ -3,9 +3,11 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { AuthContext } from '../providers/AuthProvider'
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Addvolunteer = () => {
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   const [startDate, setStartDate] = useState(new Date())
   const handleSubmit = async e => {
@@ -39,10 +41,17 @@ const Addvolunteer = () => {
     }
 
    
-    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/add-volunteer`,formData )
+    try{
+      await axios.post(`${import.meta.env.VITE_API_URL}/add-volunteer`,formData )
+      form.reset()
+      toast.success('Volunteer Added Successfully!')
+      navigate('/my-posted-volunteer')
+    }catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
     
-    console.log(data)
-
+    
   }
 
   return (
