@@ -152,16 +152,24 @@ const MyPostedVolunteer = () => {
                         <div className='flex items-center gap-x-2'>
                           <p
                             className={`px-3 py-1  ${
-                              volunter.category === 'Web Development' &&
+                              volunter.category === 'HealthCare' &&
                               'text-blue-500 bg-blue-100/60'
                             } ${
-                              volunter.category === 'Graphics Design' &&
+                              volunter.category === 'Education' &&
                               'text-green-500 bg-green-100/60'
                             }
                             ${
-                              volunter.category === 'Digital Marketing' &&
+                              volunter.category === 'Social Service' &&
                               'text-red-500 bg-red-100/60'
-                            } text-xs  rounded-full`}
+                            }
+                            
+                            ${
+                              volunter.category === 'Animal Welfare' &&
+                              'text-yellow-300 bg-yellow-100/60'
+                            }
+                            text-xs  rounded-full`}
+                            
+
                           >
                             {volunter.category}
                           </p>
