@@ -22,7 +22,7 @@ const MyPostedVolunteer = () => {
   const handleDelete = async id => {
     try {
       const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/job/${id}`
+        `${import.meta.env.VITE_API_URL}/volunter/${id}`
       )
       console.log(data)
       toast.success('Data Deleted Successfully!!!')
