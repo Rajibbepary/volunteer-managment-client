@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import { compareAsc, format } from 'date-fns'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../providers/AuthProvider'
@@ -6,8 +6,10 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const VolunteerDetails = () => {
+  //const navigate = Navigator()
   const { user } = useContext(AuthContext)
   const [startDate, setStartDate] = useState(new Date())
   const { id } = useParams()
@@ -39,7 +41,7 @@ volunteersNeeded,
   } = volunter || {}
 
 
-  const handleSubmit= e =>{
+  const handleSubmit= async e =>{
     e.preventDefault()
     const form = e.target
     const price = form.price.value
@@ -52,8 +54,18 @@ volunteersNeeded,
     if(compareAsc(new Date(startDate), new Date(deadline)) === 1)
       return toast.error('Offer a date within deadline')
 
-
+   
     const volunterData = { price, email, comment, deadline}
+
+    try{
+      await axios.post(`${import.meta.env.VITE_API_URL}/add-volunter`,volunterData )
+      form.reset()
+      toast.success('Volunteer Successfully!')
+      //navigate('/my-volunteer')
+    }catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
     
   }
 
@@ -66,7 +78,7 @@ volunteersNeeded,
       <div className='flex-1  px-4 py-7 bg-white rounded-md shadow-md md:min-h-[350px]'>
         <div className='flex items-center justify-between'>
            <div className='rounded-full object-cover overflow-hidden w-14 h-14'>
-              <img src={buyer?.photo} alt='' />
+              <img referrerPolicy='no-referrer' src={buyer?.photo} alt='' />
             </div>
         </div>
 

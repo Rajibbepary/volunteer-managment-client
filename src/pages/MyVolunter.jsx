@@ -1,4 +1,4 @@
-const MyBids = () => {
+const MyVolunter = () => {
   return (
     <section className='container px-4 mx-auto my-12'>
       <div className='flex items-center gap-x-3'>
@@ -124,4 +124,4 @@ const MyBids = () => {
   )
 }
 
-export default MyBids
+export default MyVolunter 
