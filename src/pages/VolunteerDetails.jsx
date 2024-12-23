@@ -6,34 +6,34 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useParams } from 'react-router-dom'
 
-const JobDetails = () => {
+const VolunteerDetails = () => {
   const [startDate, setStartDate] = useState(new Date())
   const { id } = useParams()
   console.log(id)
-  const [job, setJob] = useState({})
+  const [volunter, setVolunter] = useState({})
   useEffect(() => {
-    fetchJobData()
+    fetchVolunterData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  const fetchJobData = async () => {
+  const fetchVolunterData = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/job/${id}`
+      `${import.meta.env.VITE_API_URL}/volunter/${id}`
     )
-    setJob(data)
+    setVolunter(data)
     setStartDate(new Date(data.deadline))
   }
+
   const {
+ // thumbnail,
     title,
     deadline,
     category,
-    min_price,
-    max_price,
+   // location,
     description,
-    _id,
     buyer,
-  } = job || {}
-  console.log(job)
+  } = volunter || {}
+  //console.log(job)
   return (
     <div className='flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto '>
       {/* Job Details */}
@@ -56,7 +56,7 @@ const JobDetails = () => {
 
           <p className='mt-2 text-lg text-gray-600 '>{description}</p>
           <p className='mt-6 text-sm font-bold text-gray-600 '>
-            Buyer Details:
+            Volunteer Details:
           </p>
           <div className='flex items-center gap-5'>
             <div>
@@ -72,7 +72,7 @@ const JobDetails = () => {
             </div>
           </div>
           <p className='mt-6 text-lg font-bold text-gray-600 '>
-            Range: ${min_price} - ${max_price}
+            Range: 
           </p>
         </div>
       </div>
@@ -147,4 +147,4 @@ const JobDetails = () => {
   )
 }
 
-export default JobDetails
+export default VolunteerDetails

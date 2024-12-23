@@ -8,7 +8,7 @@ const JobCard = ({ volunter }) => {
     console.log(volunter)
   return (
     <Link
-      to={`/job/${_id}`}
+      to={`/volunter/${_id}`}
       className='w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'
     >
       <div className='flex items-center justify-between'>

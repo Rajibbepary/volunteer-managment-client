@@ -3,7 +3,6 @@ import Main from '../layouts/Main'
 import Home from '../pages/Home'
 import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
-import JobDetails from '../pages/JobDetails'
 import ErrorPage from '../pages/ErrorPage'
 import PrivateRoute from './PrivateRoute'
 import MyBids from '../pages/MyBids'
@@ -12,6 +11,7 @@ import Allvolunteer from '../pages/Allvolunteer'
 import Addvolunteer from '../pages/Addvolunteer'
 import MyPostedVolunteer from '../pages/MyPostedVolunteer'
 import UpdateVolunteer from '../pages/UpdateVolunteer'
+import VolunteerDetails from '../pages/VolunteerDetails'
 
 const router = createBrowserRouter([
   {
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         path: '/job/:id',
         element: (
           <PrivateRoute>
-            <JobDetails />
+           <VolunteerDetails/>
           </PrivateRoute>
         ),
       },
