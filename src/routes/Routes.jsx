@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: '/job/:id',
+        path: '/volunter/:id',
         element: (
           <PrivateRoute>
            <VolunteerDetails/>

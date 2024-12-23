@@ -25,68 +25,80 @@ const VolunteerDetails = () => {
   }
 
   const {
- // thumbnail,
+  thumbnail,
     title,
     deadline,
     category,
-   // location,
+    location,
     description,
+volunteersNeeded,
     buyer,
   } = volunter || {}
-  //console.log(job)
+  
   return (
     <div className='flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto '>
-      {/* Job Details */}
+      {/* Volunter Details */}
+      
       <div className='flex-1  px-4 py-7 bg-white rounded-md shadow-md md:min-h-[350px]'>
         <div className='flex items-center justify-between'>
-          {deadline && (
-            <span className='text-sm font-light text-gray-800 '>
-              Deadline: {format(new Date(deadline), 'P')}
-            </span>
-          )}
-          <span className='px-4 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full '>
-            {category}
-          </span>
+           <div className='rounded-full object-cover overflow-hidden w-14 h-14'>
+              <img src={buyer?.photo} alt='' />
+            </div>
         </div>
 
         <div>
-          <h1 className='mt-2 text-3xl font-semibold text-gray-800 '>
-            {title}
-          </h1>
-
-          <p className='mt-2 text-lg text-gray-600 '>{description}</p>
-          <p className='mt-6 text-sm font-bold text-gray-600 '>
-            Volunteer Details:
-          </p>
           <div className='flex items-center gap-5'>
             <div>
+            <p className='mt-2 text-sm font-bold text-gray-600 '>
+            Volunteer Details
+          </p>
               <p className='mt-2 text-sm  text-gray-600 '>
                 Name: {buyer?.name}
               </p>
               <p className='mt-2 text-sm  text-gray-600 '>
                 Email: {buyer?.email}
               </p>
+              <p className='mt-2 text-sm  text-gray-600'>Location: {location}</p>
+              <p className='mt-2 text-sm  text-gray-600'> Avilable-Volunter: {volunteersNeeded}</p>
+              {deadline && (
+            <span className='text-sm font-light text-gray-800 '>
+              Deadline: {format(new Date(deadline), 'P')}
+            </span>
+          )}
             </div>
-            <div className='rounded-full object-cover overflow-hidden w-14 h-14'>
-              <img src={buyer?.photo} alt='' />
-            </div>
+        
           </div>
-          <p className='mt-6 text-lg font-bold text-gray-600 '>
-            Range: 
-          </p>
+
+
+
+          <div className="card bg-base-100 image-full h-[200px] mt-4 shadow-xl">
+  <figure>
+    <img
+      src={thumbnail}
+      alt="thumbnail" className='object-cover w-full h-[200px]' />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title">Title: {title}</h2>
+    <p>Description: {description}</p>
+    <div className="card-actions justify-end">
+    <span className='px-4 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full '>
+            {category}
+          </span>
+    </div>
+  </div>
+</div>
         </div>
       </div>
-      {/* Place A Bid Form */}
       <section className='p-6 w-full  bg-white rounded-md shadow-md flex-1 md:min-h-[350px]'>
         <h2 className='text-lg font-semibold text-gray-700 capitalize '>
-          Place A Bid
+        Volunteer Need
         </h2>
 
         <form>
           <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2'>
             <div>
               <label className='text-gray-700 ' htmlFor='price'>
-                Price
+              Volunteer
               </label>
               <input
                 id='price'
@@ -138,7 +150,7 @@ const VolunteerDetails = () => {
               type='submit'
               className='px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'
             >
-              Place Bid
+              Place Volunteer
             </button>
           </div>
         </form>

@@ -7,8 +7,7 @@ const JobCard = ({ volunter }) => {
     volunter || {}
     console.log(volunter)
   return (
-    <Link
-      to={`/volunter/${_id}`}
+    <div
       className='w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'
     >
       <div className='flex items-center justify-between'>
@@ -34,9 +33,9 @@ const JobCard = ({ volunter }) => {
           {description.substring(0, 70)}...
         </p> */}
         
-        
+        <Link to={`/volunter/${_id}`}><button className='py-1 px-3  bg-green-300 rounded-2xl mt-2 mb-3 flex float-end'>View Details </button></Link>
       </div>
-    </Link>
+    </div>
   )
 }
 
