@@ -58,7 +58,7 @@ volunteersNeeded,
       return toast.error('Offer a date within deadline')
 
    
-    const volunterData = { volunteersNeeded, location, email, comment, deadline:startDate, volunterId, title, category, status:'Pending'}
+    const volunterData = { volunteersNeeded, location, email, comment, deadline:startDate, volunterId, title, category, status:'Pending', buyer:buyer?.email}
 
     try{
       await axios.post(`${import.meta.env.VITE_API_URL}/add-volunter`,volunterData )

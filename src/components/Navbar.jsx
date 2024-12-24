@@ -59,7 +59,7 @@ const Navbar = () => {
                 <Link to='/my-volunteer'>My Posts</Link>
               </li>
               <li>
-                <Link to='/bid-requests'>Bid Requests</Link>
+                <Link to='/Post-requests'>Post Requests</Link>
               </li>
               <li className='mt-2'>
                 <button

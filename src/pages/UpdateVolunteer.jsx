@@ -164,7 +164,7 @@ const UpdateVolunteer = () => {
 
           <div>
             <label className='text-gray-700 ' htmlFor='min_price'>
-            Volunteers Needed
+            Volunteers 
             </label>
             <input
               id='min_price'
