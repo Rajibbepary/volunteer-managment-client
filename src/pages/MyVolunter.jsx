@@ -22,6 +22,9 @@ const MyVolunter = () => {
     setVolunteer(data)
   }
   
+  const handleStatusChange = async (id, prevStatus, status) => {
+    console.log({id, prevStatus, status})
+}
   return (
     <section className='container px-4 mx-auto my-12'>
       <div className='flex items-center gap-x-3'>
@@ -85,7 +88,7 @@ const MyVolunter = () => {
                 </thead>
                 <tbody className='bg-white divide-y divide-gray-200 '>
                  {
-                  volunteer.map(volunter =>( <MYCord key={volunter._id} volunter={volunter}></MYCord>))
+                  volunteer.map(volunter =>( <MYCord handleStatusChange={handleStatusChange} key={volunter._id} volunter={volunter}></MYCord>))
                  }
                 </tbody>
               </table>

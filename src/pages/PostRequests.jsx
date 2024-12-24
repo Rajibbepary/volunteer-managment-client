@@ -17,7 +17,23 @@ const PostRequests = () => {
 
     setVolunteer(data)
   }
-console.log(volunteer)
+
+
+
+const handleStatusChange = async (id, prevStatus, status) => {
+    if(prevStatus === status || prevStatus === 'Completed')return console.log('Not Allowed')
+
+  try{
+const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/post-status-update/${id}`, { status })
+console.log(data)
+fetchAllVolunteer()
+  }catch(err){
+    console.log(err)
+  }
+
+}
+
+
   return (
     <section className='container px-4 mx-auto my-12'>
       <div className='flex items-center gap-x-3'>
@@ -89,7 +105,7 @@ console.log(volunteer)
                 </thead>
                 <tbody className='bg-white divide-y divide-gray-200 '>
                 {
-                  volunteer.map(volunter =>( <PostRequestCard key={volunter._id} volunter={volunter}></PostRequestCard>))
+                  volunteer.map(volunter =>( <PostRequestCard handleStatusChange ={handleStatusChange} key={volunter._id} volunter={volunter}></PostRequestCard>))
                  }
                 </tbody>
               </table>

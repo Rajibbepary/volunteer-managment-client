@@ -1,12 +1,14 @@
 import { format } from "date-fns";
 
 
-const MYCord = ({volunter}) => {
+const MYCord = ({volunter, handleStatusChange}) => {
   
     const {  title,
         deadline,
         category,
         location,
+        status,
+        _id
         } = volunter || {}
     console.log(volunter)
 
@@ -62,7 +64,7 @@ const MYCord = ({volunter}) => {
           </div>
         </td>
         <td className='px-4 py-4 text-sm whitespace-nowrap'>
-          <button
+          <button onClick={() => handleStatusChange(_id, status, 'Completed')}
             title='Mark Complete'
             className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed'
           >
