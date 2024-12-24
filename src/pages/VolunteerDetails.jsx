@@ -7,9 +7,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom'
 const VolunteerDetails = () => {
-  //const navigate = Navigator()
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   const [startDate, setStartDate] = useState(new Date())
   const { id } = useParams()
@@ -30,6 +30,7 @@ const VolunteerDetails = () => {
   }
 
   const {
+    _id,
   thumbnail,
     title,
     deadline,
@@ -38,6 +39,7 @@ const VolunteerDetails = () => {
     description,
 volunteersNeeded,
     buyer,
+
   } = volunter || {}
 
 
@@ -47,6 +49,7 @@ volunteersNeeded,
     const price = form.price.value
     const email = user?.email
     const comment = form.comment.value
+    const volunterId = _id
     if(user?.email === buyer?.email) return toast.error('Action not permitted.!')
 
     if(compareAsc(new Date(), new Date(deadline)) ===1) return toast.error('Deadline Crossed')
@@ -55,13 +58,13 @@ volunteersNeeded,
       return toast.error('Offer a date within deadline')
 
    
-    const volunterData = { price, email, comment, deadline}
+    const volunterData = { volunteersNeeded, location, email, comment, deadline:startDate, volunterId, title, category, status:'Pending'}
 
     try{
       await axios.post(`${import.meta.env.VITE_API_URL}/add-volunter`,volunterData )
       form.reset()
       toast.success('Volunteer Successfully!')
-      //navigate('/my-volunteer')
+      navigate('/my-volunteer')
     }catch(err){
       console.log(err)
       toast.error(err.message)

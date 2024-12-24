@@ -33,7 +33,7 @@ const JobCard = ({ volunter }) => {
           {description.substring(0, 70)}...
         </p> */}
         
-        <Link to={`/volunter/${_id}`}><button className='py-1 px-3  bg-green-300 rounded-2xl mt-2 mb-3 flex float-end'>View Details </button></Link>
+        <Link to={`/volunter/${_id}`}><button className='py-1 px-2  bg-green-500 rounded-2xl mt-2 mb-3 flex float-end'>View Details </button></Link>
       </div>
     </div>
   )

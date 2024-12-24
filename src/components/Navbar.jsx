@@ -56,7 +56,7 @@ const Navbar = () => {
                 <Link to='/my-posted-volunteer'>My Posted Volunteer</Link>
               </li>
               <li>
-                <Link to='/my-bids'>My Bids</Link>
+                <Link to='/my-volunteer'>My Posts</Link>
               </li>
               <li>
                 <Link to='/bid-requests'>Bid Requests</Link>
