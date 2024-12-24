@@ -7,17 +7,22 @@ const Allvolunteer = () => {
   const [volunteer, setVolunteer] = useState([])
 const [filter, setFilter] = useState('')
 const [search, setSearch] = useState('')
+const [sort,setSort] = useState('')
   useEffect(()=> {
     const fetchAllvolunteer = async () => {
-      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/all-volunter?filter=${filter}&search=${search}`)
+      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/all-volunter?filter=${filter}&search=${search}&sort=${sort}`)
       setVolunteer(data)
   
     }
     fetchAllvolunteer()
-  }, [filter, search])
+  }, [filter, search, sort])
   
 
-console.log(filter)
+const handleReset = ()=>{
+  setFilter('')
+  setSearch('')
+  setSort('')
+}
 
   return (
     <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
@@ -45,7 +50,7 @@ console.log(filter)
               type='text'
               name='search'
               onChange={e=> setSearch(e.target.value)}
-              placeholder='Enter Job Title'
+              placeholder='Enter Volunteer Title'
               aria-label='Enter Job Title'
             />
 
@@ -58,6 +63,7 @@ console.log(filter)
           <select
             name='category'
             id='category'
+            onChange={e => setSort(e.target.value)}
             className='border p-4 rounded-md'
           >
             <option value=''>Sort By Deadline</option>
@@ -65,7 +71,7 @@ console.log(filter)
             <option value='asc'>Ascending Order</option>
           </select>
         </div>
-        <button className='btn'>Reset</button>
+        <button onClick={handleReset} className='btn'>Reset</button>
       </div>
       <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {
