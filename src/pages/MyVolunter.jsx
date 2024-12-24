@@ -23,7 +23,15 @@ const MyVolunter = () => {
   }
   
   const handleStatusChange = async (id, prevStatus, status) => {
-    console.log({id, prevStatus, status})
+    if(prevStatus !== 'In Progress')return console.log('Not Allowed')
+
+      try{
+    const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/post-status-update/${id}`, { status })
+    console.log(data)
+    fetchAllVolunteer()
+      }catch(err){
+        console.log(err)
+      }
 }
   return (
     <section className='container px-4 mx-auto my-12'>

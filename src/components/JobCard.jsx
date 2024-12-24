@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 const JobCard = ({ volunter }) => {
   const { title, deadline, category,  thumbnail,  _id } =
     volunter || {}
-    console.log(volunter)
+   // console.log(volunter)
   return (
     <div
       className='w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'
