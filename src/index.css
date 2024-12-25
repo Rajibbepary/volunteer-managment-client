@@ -4,3 +4,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.containe{
+    background: #fff;
+    color: black;
+}
+.containe.dark{
+    background: #eaedf104;
+    color: white;
+}

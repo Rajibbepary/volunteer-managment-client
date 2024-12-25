@@ -131,7 +131,6 @@ const UpdateVolunteer = () => {
             />
           </div>
           
-
           { volunter.category && (<div className='flex flex-col gap-2 '>
             <label className='text-gray-700 ' htmlFor='category'>
               Category
@@ -140,7 +139,7 @@ const UpdateVolunteer = () => {
               name='category'
               id='category'
               defaultValue={volunter.category}
-              className='border p-2 rounded-md'
+              className='border p-2 rounded-md text-black'
             >
                <option value="">Select category</option>
               <option value='HealthCare'>HealthCare</option>
@@ -175,7 +174,7 @@ const UpdateVolunteer = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-2 '>
+          <div className='flex flex-col gap-2 text-black'>
             <label className='text-gray-700'>Deadline</label>
 
             {/* Date Picker Input Field */}
