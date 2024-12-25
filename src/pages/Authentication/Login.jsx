@@ -6,6 +6,8 @@ import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+
+
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,7 +19,9 @@ const Login = () => {
   // Google Signin
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
+    await signInWithGoogle()
+//generate token
+
 
       toast.success('Signin Successful')
       navigate(from, { replace: true })
