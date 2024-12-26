@@ -23,10 +23,10 @@ const Navbar = ({ theme, setTheme }) => {
       </div>
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1 flex gap-2 items-center'>
-          <li className='bg-slate-100 text-black rounded-md'>
+          <li className='bg-slate-50 text-black rounded-md'>
             <Link to='/' >Home</Link>
           </li>
-          <li className='bg-slate-100 text-black rounded-md'>
+          <li className='bg-slate-50 text-black rounded-md'>
             <Link to='/volunteer'>All Volunteer</Link>
           </li>
           <li><img onClick={()=>{toggle_mode()}} src={theme == 'light' ?logo_light : logo_dark} alt="" className=' toggle-icon'  /></li>
