@@ -1,5 +1,6 @@
 import AllVolunters from '../components/AllVolunters'
 import Carousel from '../components/Carousel'
+import DonotionVolunter from '../components/DonotionVolunter'
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Carousel />
       <AllVolunters/>
+      <DonotionVolunter/>
     </div>
   )
 }

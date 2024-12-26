@@ -15,14 +15,14 @@ const Navbar = ({ theme, setTheme }) => {
   const { user, logOut } = useContext(AuthContext)
   return (
     <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
-      <div className='flex-1'>
+      <div className='flex-1 '>
         <Link to='/' className='flex gap-2 items-center'>
           <img className='w-auto h-12 object-cover' src={logo} alt='' />
-          <span className='font-bold'><i>VOlUNTEER</i></span>
+          <span className='font-bold '><i className='hidden lg:block'>VOlUNTEER</i></span>
         </Link>
       </div>
       <div className='flex-none'>
-        <ul className='menu menu-horizontal px-1 flex gap-2 items-center'>
+        <ul className='menu menu-horizontal px-1 flex gap-2 items-center '>
           <li className='bg-slate-50 text-black rounded-md'>
             <Link to='/' >Home</Link>
           </li>

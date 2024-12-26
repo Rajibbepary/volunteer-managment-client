@@ -12,6 +12,7 @@ fetchAllvolunter()
 const fetchAllvolunter = async () => {
     const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/volunterall`)
     setVolunter(data)
+
   }
   
     return (
@@ -24,6 +25,7 @@ const fetchAllvolunter = async () => {
                     volunteer.map(volunter => <VolunterCard key={volunter} volunter={volunter}/>)
                 }
             </div>
+           
         </div>
     );
 };
