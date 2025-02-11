@@ -1,7 +1,7 @@
 
 import { motion } from 'motion/react';
 import logo from '../assets/images/istockphoto-1498170916-1024x1024.jpg'
-
+import logo2 from '../assets/images/istockphoto-1498170898-1024x1024.jpg'
 const DonotionVolunter = () => {
     return (
         <div className="w-11/12 mx-auto ">
@@ -16,7 +16,7 @@ const DonotionVolunter = () => {
             <motion.img
             animate={{ x: [100, 150, 100]}}
             transition={{duration: 10, repeat:Infinity}}
-            className='max-w-sm w-64 rounded-t--[40px] rounded-br-[40px] border-l-4 border-b-4 border-blue-600' src={logo} alt="" />
+            className='max-w-sm w-64 rounded-t--[40px] rounded-br-[40px] border-l-4 border-b-4 border-blue-600' src={logo2} alt="" />
             </div>
              {/* second div */}
           <div className='flex flex-col gap-5 lg:w-7/12 mt-4'>
