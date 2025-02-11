@@ -14,7 +14,7 @@ const Navbar = ({ theme, setTheme }) => {
 
   const { user, logOut } = useContext(AuthContext)
   return (
-    <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
+    <div className='navbar sticky z-40 bg-opacity-50 backdrop-blur-md  top-0 bg-base-100 shadow-sm container px-4 mx-auto'>
       <div className='flex-1 '>
         <Link to='/' className='flex gap-2 items-center'>
           <img className='w-auto h-12 object-cover' src={logo} alt='' />
